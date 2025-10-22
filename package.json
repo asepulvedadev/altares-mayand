@@ -30,6 +30,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "supabase": "^2.53.6",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
