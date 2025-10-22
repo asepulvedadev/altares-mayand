@@ -1,5 +1,6 @@
 import { createClient } from '@/lib/supabase/server'
-import { getCached, CACHE_KEYS, CACHE_TTL } from '@/lib/redis/client'
+import { getCached } from '@/lib/redis/client'
+import { CACHE_KEYS, CACHE_TTL } from '@/lib/redis/cache-keys'
 import { altarSchema, type Altar, type ModelType } from './schemas/altar.schema'
 import type { Altar as AltarDB } from '@/lib/types/database.types'
 
@@ -22,6 +23,8 @@ export async function getAltares(): Promise<Altar[]> {
 
       if (error) {
         console.error('Error fetching altares:', error)
+        console.error('Supabase URL:', process.env.NEXT_PUBLIC_SUPABASE_URL)
+        console.error('Supabase Key exists:', !!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY)
         throw new Error('Failed to fetch altares')
       }
 
